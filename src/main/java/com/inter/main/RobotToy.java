@@ -11,11 +11,16 @@ import com.inter.cch.pojo.Position;
  */
 public class RobotToy {
 	private Position position;
+	
+	public RobotToy(){
+		
+	}
 	public RobotToy(Position position){
 		this.position = position;
 	}
 	public boolean setPosition(Position position){
-		this.setPosition(position);
+//		this.setPosition(position);
+		this.position = position;
 		return true;
 	}
 	public Position getPosition(){

@@ -7,5 +7,11 @@ public class SquareTable{
 		this.x = x;
 		this.y = y;
 	}
-	//public boolean isPositionValid(Position position)
+	public boolean isPositionValid(Position position){
+		if(position.getX() > this.y || position.getX()<0 || position.getY() > this.x || position.getY()<0){
+			return false;
+		}
+		return true;
+		
+	}
 }
