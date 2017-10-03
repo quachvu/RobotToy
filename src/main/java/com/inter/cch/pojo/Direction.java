@@ -13,7 +13,7 @@ import java.util.Map;
  *
  */
 public enum Direction {
-	NORTH(0),SOUTH(1),WEST(2),EAST(3);
+	NORTH(0),EAST(1),SOUTH(2),WEST(3);
 	private static Map<Integer, Direction> map = new HashMap<Integer, Direction>();
 	int direction;
 	static {
@@ -35,9 +35,9 @@ public enum Direction {
 		int num =0;
 		// TODO Auto-generated method stub
 		if(this.direction+i<0){
-			num = 3;
+			num = map.size()-1;
 		}else{
-			num = (this.direction+i)%4;
+			num = (this.direction+i)%map.size();
 		} 
 		return Direction.valueOf(num);
 	}

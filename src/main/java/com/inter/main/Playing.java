@@ -52,18 +52,43 @@ public class Playing {
 		int x=0;
 		int y=0;
 		Direction direction = null;
+		String output="";
 		if(command == Commands.PLACE){
 			inputParams = inputCommand[1].split(",");
-			x = Integer.parseInt(inputParams[0]);
-			y = Integer.parseInt(inputParams[1]);
-			direction = Direction.valueOf(inputParams[2]);
+			try{
+				
+				x = Integer.parseInt(inputParams[0]);
+				y = Integer.parseInt(inputParams[1]);
+				direction = Direction.valueOf(inputParams[2]);
+				boolean initRobot = initRobot(new Position(x,y,direction));
+				output = String.valueOf(initRobot);
+				for(String str : inputParams){
+					
+					if("MOVE".equalsIgnoreCase(str)){
+						Position newPosition = robot.getPosition().getNextPosition();
+						output = String.valueOf(robot.move(newPosition));
+					}
+					if("LEFT".equalsIgnoreCase(str)){
+						output = String.valueOf(robot.rotateLeft());
+					}
+					if("RIGHT".equalsIgnoreCase(str)){
+						output = String.valueOf(robot.rotateLeft());	
+					}
+					if("REPORT".equalsIgnoreCase(str)){
+						output = report();
+					}
+				}
+			}catch(Exception re){
+				throw new RobotToyException("Invalid Commands input!");
+			}
+			
 		}
 		
-		String output="";
-		switch(command){
+		/*switch(command){
 			case PLACE: 
 				boolean initRobot = initRobot(new Position(x,y,direction));
 				output = String.valueOf(initRobot);
+//				command = Commands.valueOf(turnCommand);
 				break;
 			case MOVE:
 				Position newPosition = robot.getPosition().getNextPosition();
@@ -80,8 +105,8 @@ public class Playing {
 				output = report();
 				break;
 			default:
-				System.out.println("command is invvalid! Please try again with correct format!");
-		}
+				throw new RobotToyException("Command invalid! Please try again with correct format!");
+		}*/
 		return output;
 	}
 	

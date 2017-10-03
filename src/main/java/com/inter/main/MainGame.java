@@ -18,20 +18,32 @@ public class MainGame {
 		
 		System.out.println("Robot Toy Program");
 		System.out.println("Please enter commands following the below format:");
-		System.out.println("PLACE X,Y, NORTH(SOUTH)(WEST)(EAST), MOVE,LEFT,RIGHT, REPORT");
+		System.out.println("PLACE X,Y, NORTH(SOUTH)(WEST)(EAST), MOVE,LEFT,RIGHT, REPORT or QUIT");
 		Playing playing = new Playing(robot, squareTable);
-		Scanner scan = new Scanner(System.in);
-		String inputS = scan.nextLine();
-		System.out.println("input = "+inputS);
-		String output="";
-		try {
-			output = playing.evaluation(inputS);
-		} catch (RobotToyException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		System.out.println("Output = " + output);
+		//loop through input commands to process the Robot until users wanna exit.
+		String inputS = "";
+		boolean moreCommands = true;
+		do{
+			System.out.println("Please input your commands: ");
+			Scanner scan = new Scanner(System.in);
+			inputS = scan.nextLine();
+			System.out.println("input = "+inputS);
+			if("QUIT".equalsIgnoreCase(inputS)){
+				moreCommands = false;
+			}else{
+				String output="";
+				try {
+					output = playing.evaluation(inputS);
+					System.out.println("The current Robot Position is: " + output);
+				} catch (RobotToyException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				System.out.println("Output = " + output);
+			}
+			
+		}while(moreCommands);
 				
 	}
 
