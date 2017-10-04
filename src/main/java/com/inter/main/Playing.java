@@ -46,7 +46,7 @@ public class Playing {
 	
 	public String evaluation(String inputS) throws RobotToyException{
 		String[] inputCommand = inputS.split(" ");
-		System.out.println("inputCommand[1] = " + inputCommand[1]);
+//		System.out.println("inputCommand[1] = " + inputCommand[1]);
 		Commands command = Commands.valueOf(inputCommand[0]);
 		String inputParams[];
 		int x=0;
@@ -60,9 +60,9 @@ public class Playing {
 				x = Integer.parseInt(inputParams[0]);
 				y = Integer.parseInt(inputParams[1]);
 				direction = Direction.valueOf(inputParams[2]);
-				boolean initRobot = initRobot(new Position(x,y,direction));
-				output = String.valueOf(initRobot);
-				for(String str : inputParams){
+//				boolean initRobot = initRobot(new Position(x,y,direction));
+//				output = String.valueOf(initRobot);
+				/*for(String str : inputParams){
 					
 					if("MOVE".equalsIgnoreCase(str)){
 						Position newPosition = robot.getPosition().getNextPosition();
@@ -77,14 +77,14 @@ public class Playing {
 					if("REPORT".equalsIgnoreCase(str)){
 						output = report();
 					}
-				}
+				}*/
 			}catch(Exception re){
 				throw new RobotToyException("Invalid Commands input!");
 			}
 			
 		}
 		
-		/*switch(command){
+		switch(command){
 			case PLACE: 
 				boolean initRobot = initRobot(new Position(x,y,direction));
 				output = String.valueOf(initRobot);
@@ -92,13 +92,16 @@ public class Playing {
 				break;
 			case MOVE:
 				Position newPosition = robot.getPosition().getNextPosition();
-				output = String.valueOf(robot.move(newPosition));
+				if (!squareTable.isPositionValid(newPosition))
+                    output = String.valueOf(false);
+                else
+                    output = String.valueOf(robot.move(newPosition));
 				break;
 			case LEFT:
 				output = String.valueOf(robot.rotateLeft());
 				break;
 			case RIGHT:
-				output = String.valueOf(robot.rotateLeft());
+				output = String.valueOf(robot.rotateRight());
 				break;
 				
 			case REPORT:
@@ -106,7 +109,7 @@ public class Playing {
 				break;
 			default:
 				throw new RobotToyException("Command invalid! Please try again with correct format!");
-		}*/
+		}
 		return output;
 	}
 	

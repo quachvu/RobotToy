@@ -4,6 +4,7 @@
 package com.inter.main;
 
 import com.inter.cch.pojo.Position;
+import com.inter.exception.RobotToyException;
 
 /**
  * @author vu
@@ -31,6 +32,9 @@ public class RobotToy {
 		this.position = newPosition;
 		return true;
 	}
+	public boolean move() throws RobotToyException{
+		return move(position.getNextPosition()); 
+	}
 	public boolean rotateLeft() {
 		// TODO Auto-generated method stub
 		this.position.direction = this.position.direction.rotateLeft(); 
@@ -38,7 +42,7 @@ public class RobotToy {
 	}
 	public boolean rotateRight() {
 		// TODO Auto-generated method stub
-		this.position.direction = this.position.direction.rotateLeft(); 
+		this.position.direction = this.position.direction.rotateRight(); 
 		return true;
 	}
 }
