@@ -16,10 +16,22 @@ import com.inter.exception.RobotToyException;
 public class Playing {
 	RobotToy robot;
 	SquareTable squareTable;
+	PlaceObject placeObject;
+	POPosition poPosition;
 	
-	public Playing(RobotToy robot, SquareTable squareTable){
+	public Playing(PlaceObject placeObject, RobotToy robot, SquareTable squareTable){
 		this.robot = robot;
 		this.squareTable = squareTable;
+		this.placeObject = placeObject;
+	}
+	
+	//constructor for PLACE_OBJECT
+	public boolean initObject(POPosition poPosition) throws RobotToyException{
+		if(poPosition==null){
+			throw new RobotToyException("Invalid position");
+		}
+		placeObject.setPoPosition(poPosition);
+		return true;
 	}
 	
 	public boolean initRobot(Position position) throws RobotToyException{
@@ -41,6 +53,7 @@ public class Playing {
 		
 		// TODO Auto-generated method stub
 		robot.setPosition(position);
+		
 		return true;
 	}
 	
@@ -60,35 +73,19 @@ public class Playing {
 				x = Integer.parseInt(inputParams[0]);
 				y = Integer.parseInt(inputParams[1]);
 				direction = Direction.valueOf(inputParams[2]);
-//				boolean initRobot = initRobot(new Position(x,y,direction));
-//				output = String.valueOf(initRobot);
-				/*for(String str : inputParams){
-					
-					if("MOVE".equalsIgnoreCase(str)){
-						Position newPosition = robot.getPosition().getNextPosition();
-						output = String.valueOf(robot.move(newPosition));
-					}
-					if("LEFT".equalsIgnoreCase(str)){
-						output = String.valueOf(robot.rotateLeft());
-					}
-					if("RIGHT".equalsIgnoreCase(str)){
-						output = String.valueOf(robot.rotateLeft());	
-					}
-					if("REPORT".equalsIgnoreCase(str)){
-						output = report();
-					}
-				}*/
 			}catch(Exception re){
 				throw new RobotToyException("Invalid Commands input!");
 			}
 			
 		}
-		
 		switch(command){
 			case PLACE: 
-				boolean initRobot = initRobot(new Position(x,y,direction));
-				output = String.valueOf(initRobot);
-//				command = Commands.valueOf(turnCommand);
+				Position po = new Position(x, y, direction);
+				 poPosition = new POPosition(po);
+				boolean initRobot = initRobot(po);
+				boolean initObject = initObject(poPosition);
+				
+				output = String.valueOf(initRobot && initObject);
 				break;
 			case MOVE:
 				Position newPosition = robot.getPosition().getNextPosition();
@@ -103,7 +100,9 @@ public class Playing {
 			case RIGHT:
 				output = String.valueOf(robot.rotateRight());
 				break;
-				
+			case PLACE_OBJECT:
+				output = String.valueOf(poPosition.getNewPOPosition(robot.getPosition()));
+				break;
 			case REPORT:
 				output = report();
 				break;
@@ -115,6 +114,7 @@ public class Playing {
 	
 	public String report() {
 		// TODO Auto-generated method stub
-		return robot.getPosition().getX() + "," + robot.getPosition().getY() + "," + robot.getPosition().getDirection().toString();
+		return robot.getPosition().getX() + "," + robot.getPosition().getY() + "," 
+				+ robot.getPosition().getDirection().toString()+"- PLACE_OBJECT: "+poPosition.getX()+","+poPosition.getY();
 	}
 }

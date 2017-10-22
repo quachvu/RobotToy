@@ -1,6 +1,7 @@
 package main;
 
-import org.junit.Assert;
+import junit.framework.Assert;
+
 import org.junit.Test;
 
 import com.inter.cch.pojo.Direction;

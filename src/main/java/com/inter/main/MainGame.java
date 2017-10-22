@@ -15,11 +15,14 @@ public class MainGame {
 		// TODO Auto-generated method stub
 		SquareTable squareTable = new SquareTable(5,5);
 		RobotToy robot = new RobotToy();
+		PlaceObject placeObject = new PlaceObject();
 		
 		System.out.println("Robot Toy Program");
 		System.out.println("Please enter commands following the below format:");
-		System.out.println("PLACE X,Y, NORTH(SOUTH)(WEST)(EAST), MOVE,LEFT,RIGHT, REPORT or EXIT");
-		Playing playing = new Playing(robot, squareTable);
+		System.out.println("PLACE X,Y, NORTH(SOUTH)(WEST)(EAST), MOVE,LEFT,RIGHT, REPORT, PLACE_OBJECT or EXIT");
+		Playing playing = new Playing(placeObject, robot, squareTable);
+		//Place PLACED_OBJECT
+		System.out.println("Please enter command for PLACED_OBJECT:");
 		//loop through input commands to process the Robot until users wanna exit.
 		String inputS = "";
 		boolean moreCommands = true;

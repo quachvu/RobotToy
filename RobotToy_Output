@@ -1,0 +1,39 @@
+Robot Toy Program
+Please enter commands following the below format:
+PLACE X,Y, NORTH(SOUTH)(WEST)(EAST), MOVE,LEFT,RIGHT, REPORT or EXIT
+PLACE 0,0,NORTH
+input = PLACE 0,0,NORTH
+The current Robot Position is: true
+MOVE
+input = MOVE
+The current Robot Position is: true
+REPORT
+input = REPORT
+The current Robot Position is: 0,1,NORTH
+PLACE 0,0,NORTH
+input = PLACE 0,0,NORTH
+The current Robot Position is: true
+LEFT
+input = LEFT
+The current Robot Position is: true
+REPORT
+input = REPORT
+The current Robot Position is: 0,0,WEST
+PLACE 1,2,EAST
+input = PLACE 1,2,EAST
+The current Robot Position is: true
+MOVE
+input = MOVE
+The current Robot Position is: true
+MOVE
+input = MOVE
+The current Robot Position is: true
+LEFT
+input = LEFT
+The current Robot Position is: true
+MOVE
+input = MOVE
+The current Robot Position is: true
+REPORT
+input = REPORT
+The current Robot Position is: 3,3,NORTH

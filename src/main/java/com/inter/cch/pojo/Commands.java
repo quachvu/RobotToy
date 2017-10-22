@@ -5,5 +5,6 @@ public enum Commands {
 	MOVE,
 	LEFT,
 	RIGHT,
-	REPORT
+	REPORT,
+	PLACE_OBJECT,
 }

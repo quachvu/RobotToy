@@ -9,6 +9,7 @@ import com.inter.cch.pojo.Direction;
 import com.inter.cch.pojo.Position;
 import com.inter.cch.pojo.SquareTable;
 import com.inter.exception.RobotToyException;
+import com.inter.main.PlaceObject;
 import com.inter.main.Playing;
 import com.inter.main.RobotToy;
 
@@ -24,7 +25,8 @@ public class PlayingTest {
 
         SquareTable board = new SquareTable(BOARD_COLUMNS, BOARD_ROWS);
         RobotToy robotToy = new RobotToy();
-        Playing game = new Playing(robotToy,board);
+        PlaceObject placeObject = new PlaceObject();
+        Playing game = new Playing(placeObject,robotToy,board);
 
         Assert.assertTrue(game.initRobot(new Position(0, 1, Direction.NORTH)));
         Assert.assertTrue(game.initRobot(new Position(2, 2, Direction.SOUTH)));
@@ -37,7 +39,8 @@ public class PlayingTest {
 
     	SquareTable table = new SquareTable(BOARD_COLUMNS, BOARD_ROWS);
         RobotToy robotToy = new RobotToy();
-        Playing playing = new Playing(robotToy,table);
+        PlaceObject placeObject = new PlaceObject();
+        Playing playing = new Playing(placeObject,robotToy,table);
 
         thrown.expect(RobotToyException.class);
         playing.initRobot(null);
@@ -50,7 +53,8 @@ public class PlayingTest {
 
         SquareTable board = new SquareTable(BOARD_COLUMNS, BOARD_ROWS);
         RobotToy robotToy = new RobotToy();
-        Playing playing = new Playing(robotToy,board);
+        PlaceObject placeObject = new PlaceObject();
+        Playing playing = new Playing(placeObject,robotToy,board);
 
         playing.evaluation("PLACE 0,0,NORTH");
         Assert.assertEquals("0,0,NORTH", playing.evaluation("REPORT"));
