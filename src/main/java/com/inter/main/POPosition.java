@@ -7,12 +7,13 @@ public class POPosition extends Position {
 	
 	int x;
 	int y;
-	private Position position;
+	public Position position;
 	
 	public POPosition(Position position){
 		super(position);
 		this.position = position;
 	}
+	
 	public boolean getNewPOPosition(Position position) throws RobotToyException{
 		switch(position.getDirection()){
 		 case NORTH:
